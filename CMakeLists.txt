@@ -6,6 +6,7 @@ if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
 endif()
 
 cmake_minimum_required(VERSION 3.11)
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 # 版本第一位与赛季年份对应，同时与branch对应 第二位代表功能变化 第三位代表bug修复
 project(
