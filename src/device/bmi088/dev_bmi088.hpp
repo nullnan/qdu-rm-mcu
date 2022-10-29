@@ -27,9 +27,9 @@ class BMI088 {
 
   bool Init();
 
-  void PraseGyro();
+  void ParseGyro();
 
-  void PraseAccel();
+  void ParseAccel();
 
   bool StartRecvGyro();
 

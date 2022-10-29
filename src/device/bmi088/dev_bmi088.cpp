@@ -202,7 +202,7 @@ BMI088::BMI088(BMI088::Rotation &rot)
         if (bmi088->accl_new_.Take(0)) {
           bmi088->StartRecvAccel();
           bmi088->accl_raw_.Take(UINT16_MAX);
-          bmi088->PraseAccel();
+          bmi088->ParseAccel();
 
           bmi088->accl_tp_.Publish(bmi088->accl_);
         }
@@ -210,7 +210,7 @@ BMI088::BMI088(BMI088::Rotation &rot)
         if (bmi088->gyro_new_.Take(0)) {
           bmi088->StartRecvGyro();
           bmi088->gyro_raw_.Take(UINT16_MAX);
-          bmi088->PraseGyro();
+          bmi088->ParseGyro();
 
           bmi088->gyro_tp_.Publish(bmi088->gyro_);
         }
@@ -376,7 +376,7 @@ bool BMI088::Init() {
   return true;
 }
 
-void BMI088::PraseGyro() {
+void BMI088::ParseGyro() {
   int16_t raw_x, raw_y, raw_z;
   memcpy(&raw_x, dma_buf + BMI088_ACCL_RX_BUFF_LEN, sizeof(raw_x));
   memcpy(&raw_y, dma_buf + BMI088_ACCL_RX_BUFF_LEN + 2, sizeof(raw_y));
@@ -405,7 +405,7 @@ void BMI088::PraseGyro() {
   this->gyro_.z -= this->cali.gyro_offset.z;
 }
 
-void BMI088::PraseAccel() {
+void BMI088::ParseAccel() {
   int16_t raw_x, raw_y, raw_z;
   memcpy(&raw_x, dma_buf + 1, sizeof(raw_x));
   memcpy(&raw_y, dma_buf + 3, sizeof(raw_y));
